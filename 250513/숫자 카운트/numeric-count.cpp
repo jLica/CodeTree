@@ -13,7 +13,8 @@ pair<int, int> count(int a, int b) {
         v_b.push_back((b%(tens*10)-b%tens)/(tens));
         tens *= 10;
     }
-
+    // 324
+    // 4 2 3
     int count1 = 0;
     int count2 = 0;
     for(int i = 0; i < 3; i++) {
@@ -34,8 +35,7 @@ pair<int, int> count(int a, int b) {
 bool satisfied(int a, int b, const pair<int, int>& p) {
     const pair<int, int> p2 = count(a, b);
 
-    if(p.first == p2.first && p.second == p2.second) return true;
-    return false;
+    return p == p2;
 }
 
 int main() {
@@ -52,12 +52,15 @@ int main() {
     bool isSatisfied = true;
     for(int i = 1; i <= 9; i++) {
         for(int j = 1; j <= 9; j++) {
+            if(i == j) continue;
             for(int k = 1; k <= 9; k++) {
+                if(k == i || k == j) continue;
                 num = i*100 + j*10 + k;
                 isSatisfied = true;
                 for(int l = 0; l < N; l++) {
                     if(!satisfied(num, v[l], v2[l])) {
                         isSatisfied = false;
+                        break;
                     }
                 }
                 if(isSatisfied) {
