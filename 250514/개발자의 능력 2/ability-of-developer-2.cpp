@@ -8,6 +8,7 @@ int total;
 
 // 3팀의 difference 중 가장 큰 차이를 리턴
 int difference(int i, int j, int k, int l) {
+    // 총합에서 두 팀의 합을 제외해서 나머지 한 팀의 합을 추산
     int ability_team[3] = {ability[i]+ability[j], ability[k]+ability[l], total-ability_team[0]-ability_team[1]};
     int maxDiff = INT_MIN;
     int diff = 0;
@@ -27,7 +28,7 @@ int main() {
     }
 
     // Please write your code here.
-    // 6개 수가 전부 다른 상황. 중복은 허용
+    // 4개 수가 전부 다른 상황. 한 팀 내에서 순서 변화에 의한 중복은 허용
     int minDifference = INT_MAX;
     for(int i = 0; i < 6; i++) {
         for(int j = 0; j < 6; j++) {
