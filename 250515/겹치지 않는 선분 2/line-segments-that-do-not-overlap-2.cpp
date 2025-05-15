@@ -8,7 +8,7 @@ int x1[100], x2[100];
 bool overlapped[100];
 
 bool isOverlapped(int i, int j) {
-    return ((x1[j]-x1[i])*(x2[j]-x2[i]) < 0);
+    return ((x1[i]>x1[j] && x2[i]<x2[j])||(x1[i]<x1[j] && x2[i]>x2[j]));
 }
 
 int main() {
