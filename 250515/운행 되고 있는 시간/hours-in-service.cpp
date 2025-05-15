@@ -1,5 +1,6 @@
 #include <iostream>
 #include <climits>
+#include <algorithm>
 
 using namespace std;
 
@@ -8,11 +9,7 @@ int A[100], B[100];
 bool Time[1000];
 
 int getRunningTime(int skipIdx) {
-    for(int i = 0; i < 1000; i++) {
-        Time[i] = false;
-    }
-    int minTime = INT_MAX;
-    int maxTime = INT_MIN;
+    fill(Time, Time+1000, false); // fill 함수 이용
     int result = 0;
 
     for(int i = 0; i < N; i++) {
