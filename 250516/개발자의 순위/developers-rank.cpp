@@ -24,6 +24,7 @@ int main() {
     bool isAlwaysWin = true;
     int count = 0;
     int l;
+
     for(int i = 1; i <= n; i++) {
         for(int j = 1; j <= n; j++) {
             if(i == j) continue;
