@@ -20,23 +20,18 @@ int main() {
     int sum = 0;
     int num_student = 0;
     bool chance_used = false;
-    int next_price = 0;
     for(int i = 0; i < N; i++) {
-        next_price = P[i];
-        if(sum+next_price*0.5 > B) { // 1/2조차 못 지불
-            num_student = i;
+        if(sum + P[i] <= B) {
+            num_student++;
+            sum += P[i];
         }
-        else if(sum+next_price > B) {
-            if(chance_used) { // 1/2는 지불이 가능하나 이미 chance 사용
-                num_student = i;
-            }
+        else if(sum + P[i]*0.5 <= B) {
+            if(chance_used) break;
             else {
                 chance_used = true;
-                sum += next_price*0.5;
+                num_student++; 
+                sum += P[i]*0.5;
             }
-        }
-        else { // 지불 가능
-            sum += next_price;
         }
     }
     cout << num_student;
