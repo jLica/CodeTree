@@ -25,14 +25,10 @@ int main() {
             num_student++;
             sum += P[i];
         }
-        else if(sum + P[i]*0.5 <= B) {
-            if(chance_used) break;
-            else {
-                chance_used = true;
-                num_student++; 
-                sum += P[i]*0.5;
-            }
-        }
+        else break; // 오름차순이므로 구매할 수 없을 때는 그냥 종료
+    }
+    if(num_student < N) {
+        if(sum + P[num_student]*0.5 <= B) num_student++;
     }
     cout << num_student;
     return 0;
