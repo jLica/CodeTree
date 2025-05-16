@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 #include <set>
 
 using namespace std;
@@ -31,6 +30,7 @@ int main() {
 
     // Please write your code here.
     //치즈의 수와 사람의 수가 적기 때문에 치즈별로 완전탐색을 하는 것이 좋아 보임
+
     // 아픈 사람이 먹은 공통 치즈
     set<int> eaten_cheese;
     for(int i = 0; i < S; i++) {
@@ -38,12 +38,13 @@ int main() {
             if(sick_p[i] != p[j] || sick_t[i] <= t[j]) continue;
             eaten_cheese.insert(m[j]);
         }
-        bad_cheese_candidates = intersection(bad_cheese_candidates, eaten_cheese);
+        bad_cheese_candidates = intersection(bad_cheese_candidates, eaten_cheese); // 아픈 사람이 공통으로 먹은 치즈 교집합
         eaten_cheese.clear();
     }
     int maxCount = 0;
     set<int> consumer;
 
+    // 각 상한 치즈 후보마다 먹은 사람 수를 확인
     for(int i : bad_cheese_candidates) {
         for(int j = 0; j < D; j++) {
             if(m[j] == i) consumer.insert(p[j]);
