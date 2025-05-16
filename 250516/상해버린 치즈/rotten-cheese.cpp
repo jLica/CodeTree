@@ -1,15 +1,12 @@
 #include <iostream>
 #include <set>
+#include <algorithm>
 
 using namespace std;
 
 set<int> intersection(set<int>& s1, set<int>& s2) {
     set<int> result;
-    for(int item1 : s1) {
-        for(int item2 : s2) {
-            if(item1 == item2) result.insert(item1);
-        }
-    }
+    set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(), inserter(result, result.begin())); // set_intersection을 이용한 개선
     return result;
 }
 
@@ -31,15 +28,15 @@ int main() {
     // Please write your code here.
     //치즈의 수와 사람의 수가 적기 때문에 치즈별로 완전탐색을 하는 것이 좋아 보임
 
-    // 아픈 사람이 먹은 공통 치즈
-    set<int> eaten_cheese;
+    set<int> ate_cheese;
+    // 아픈 사람이 먹은 공통 치즈 구하기
     for(int i = 0; i < S; i++) {
         for(int j = 0; j < D; j++) {
             if(sick_p[i] != p[j] || sick_t[i] <= t[j]) continue;
-            eaten_cheese.insert(m[j]);
+            ate_cheese.insert(m[j]);
         }
-        bad_cheese_candidates = intersection(bad_cheese_candidates, eaten_cheese); // 아픈 사람이 공통으로 먹은 치즈 교집합
-        eaten_cheese.clear();
+        bad_cheese_candidates = intersection(bad_cheese_candidates, ate_cheese); // 아픈 사람이 공통으로 먹은 치즈 교집합
+        ate_cheese.clear();
     }
     int maxCount = 0;
     set<int> consumer;
