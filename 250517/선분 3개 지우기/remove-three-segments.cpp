@@ -11,8 +11,8 @@ bool isOverlapped(int skip1, int skip2, int skip3) {
     for(int i = 0; i < n-1; i++) {
         if(i == skip1 || i == skip2 || i == skip3) continue;
         for(int j = i+1; j < n; j++) {
-            if(j == skip1 || j == skip2 || j == skip3) continue;
-            if((r[i] >= l[j] && r[i] <= r[j]) || (r[j]>=l[i] && r[j] <= r[i])) {
+            if(j == skip1 || j == skip2 || j == skip3) continue;    
+            if((l[i] <= r[j] && l[j] <= r[i])) { // 겹침 조건 개선
                 result = true;
                 break;
             }
