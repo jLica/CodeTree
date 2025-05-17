@@ -20,7 +20,7 @@ int main() {
         sum = 0;
         for(int j = 0; j < N; j++) {
             if(i < Ta[j]) sum += C;
-            else if(i >= Ta[j] && i < Tb[j]) sum += G;
+            else if(i >= Ta[j] && i <= Tb[j]) sum += G;
             else sum += H;
         }
         maxSum = max(sum, maxSum);
