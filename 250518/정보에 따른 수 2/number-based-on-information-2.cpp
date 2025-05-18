@@ -49,7 +49,7 @@ int main() {
 
     // Please write your code here.
     int count = 0;
-    for(int i = a; i <= b; i++) {
+    for(int i = a-1; i <= b-1; i++) {
         if(isSatisfied(i)) count++;
     }
     cout << count;
