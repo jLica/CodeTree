@@ -13,9 +13,9 @@ int main() {
     for(int i = 0; i <= C/A+1; i++) {
         value = A*i;
         for(int j = 0; j <= C/B+1; j++) {
-            value += B;
             if(value <= C)
                 max_value = max(value, max_value);
+            value += B;
         }
     }
     cout << max_value;
