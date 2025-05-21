@@ -13,11 +13,11 @@ int MinDistance() {
     bool nowRunning = false;
     for(int i = 0; i < N; i++) {
         if(seat[i] == '1') {
-            if(!nowRunning) {
-                nowRunning = true;
-                continue;
-            }
-            result = min(distance, result);
+            if(!nowRunning) nowRunning = true;
+            
+            else 
+                result = min(distance, result);
+            
             distance = 0;
         }
         distance++;
