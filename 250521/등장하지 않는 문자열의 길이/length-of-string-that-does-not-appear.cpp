@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <unordered_set>
 
 using namespace std;
 
@@ -12,18 +13,17 @@ int main() {
 
     // Please write your code here.
     // 문자열 내의 어떤 substring도 반복되지 않는 최소 길이
-    for(int i = 1; i <= str.length(); i++) {
+    for(int i = 1; i <= N; i++) {
         bool isOnlyOne = true;
-        for(int j = 0; j <= str.length()-i; j++) {
+        unordered_set<string> s;
+        
+        for(int j = 0; j <= N-i; j++) {
             string sub_str = str.substr(j, i); // i 길이의 substr
-            for(int k = 0; k <= str.length()-i; k++) {
-                if(k == j) continue;
-                string sub_str2 = str.substr(k, i);
-                if(sub_str.compare(sub_str2) == 0) {
-                    isOnlyOne = false;
-                    break;
-                }
+            if(s.count(sub_str) == 1) {
+                isOnlyOne = false;
+                break;
             }
+            s.insert(sub_str);
         }
         if(isOnlyOne) {
             cout << i;
