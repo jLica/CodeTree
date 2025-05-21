@@ -10,9 +10,14 @@ string seat;
 int MinDistance() {
     int distance = 0;
     int result = INT_MAX;
+    bool nowRunning = false;
     for(int i = 0; i < N; i++) {
         if(seat[i] == '1') {
-            if(distance > 0) result = min(distance, result);
+            if(!nowRunning) {
+                nowRunning = true;
+                continue;
+            }
+            result = min(distance, result);
             distance = 0;
         }
         distance++;
