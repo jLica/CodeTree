@@ -6,11 +6,12 @@ int n;
 int adjacent[1000];
 int original[1000];
 
-bool isOverlapped(int num, int idx) {
+bool isAllRight(int num, int idx) {
+    if(num <= 0 || num > n) return false;
     for(int i = 0; i <= idx; i++) {
-        if(original[i] == num) return true;
+        if(original[i] == num) return false;
     }
-    return false;
+    return true;
 }
 
 int main() {
@@ -28,7 +29,7 @@ int main() {
         isConfirmed = true;
         for(int j = 0; j < n-1; j++) {
             int next = adjacent[j] - original[j];
-            if(isOverlapped(next, j)) {
+            if(!isAllRight(next, j)) {
                 isConfirmed = false;
                 break;
             }
