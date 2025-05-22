@@ -26,7 +26,8 @@ int main() {
     }
 
     // Please write your code here.
-    for(int i = arr[0]; i <= 100; i++) { // i가 최댓값이라 가정
+    int start = max(arr[0], arr[n-1]);
+    for(int i = start; i <= 100; i++) { // i가 최댓값이라 가정
         if(max_distance(i) <= k) {
             cout << i;
             break;
