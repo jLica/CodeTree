@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -13,11 +14,12 @@ int main() {
     }
 
     // Please write your code here.
-    
+    sort(arr, arr+N);
+
     int maxCount = 0;
     for(int i = 0; i < N; i++) {
-        int count = 0;
-        for(int j = 0; j < N; j++) {
+        int count = 1;
+        for(int j = i+1; j < N; j++) {
             if(arr[j] <= arr[i]+K && arr[j] >= arr[i]) count++;
         }
         maxCount = max(count, maxCount);
