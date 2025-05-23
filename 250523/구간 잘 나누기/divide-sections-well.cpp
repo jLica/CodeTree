@@ -4,32 +4,20 @@ using namespace std;
 
 int n, m;
 int a[100];
-int sum[100] = {};
+int count[100] = {};
 
-int max_count() {
-    int result = 0;
-    for(int i = 0; i < m; i++) {
-        result = max(sum[i], result);
-    }
-    return result;
-}
-
-int min_max_count(int start_idx, int step) {
-    if(step == m) {
-        if(start_idx != n) return INT_MAX; // 마지막에 수가 남은 경우
-        return max_count();
-    }
-    if(start_idx >= n) return INT_MAX; // 마지막이 아니지만 수가 안 남은 경우
-
-    int result = INT_MAX;
-    for(int i = 1; i < n; i++) { // 이번 스텝에서 더할 개수
-        sum[step] = 0;
-        for(int j = 0; j < i; j++) { // 실제로 더하는 과정
-            sum[step] += a[start_idx+j];
+bool is_possible(int limit) { // 현재 최댓값을 만족하게끔 앞에서부터 제한을 두면서 더하고, 그렇게 더한 partition이 m개를 넘지 않는지를 검사
+    int count = 1;
+    int sum = 0;
+    for(int i = 0; i < n; i++) {
+        if(sum+a[i] <= limit) {
+            sum += a[i];
+            continue;
         }
-        result = min(result, min_max_count(start_idx+i, step+1));
+        sum = a[i];
+        count++; // sum에 다음 것을 담을 수 없다면 다음으로 넘어감
     }
-    return result;
+    return (count <= m);
 }
 
 int main() {
@@ -40,6 +28,11 @@ int main() {
     }
 
     // Please write your code here.
-    cout << min_max_count(0, 0);
+    for(int i = a[0]; i <= 10000; i++) {
+        if(is_possible(i)) {
+            cout << i;
+            break;
+        }
+    }
     return 0;
 }
