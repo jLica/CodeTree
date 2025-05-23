@@ -22,13 +22,15 @@ bool is_possible(int limit) { // 현재 최댓값을 만족하게끔 앞에서�
 
 int main() {
     cin >> n >> m;
+    int max_num = 0;
 
     for (int i = 0; i < n; i++) {
         cin >> a[i];
+        max_num = max(a[i], max_num);
     }
 
     // Please write your code here.
-    for(int i = a[0]; i <= 10000; i++) {
+    for(int i = max_num; i <= 10000; i++) {
         if(is_possible(i)) {
             cout << i;
             break;
