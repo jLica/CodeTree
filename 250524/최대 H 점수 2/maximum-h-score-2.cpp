@@ -31,9 +31,13 @@ int main() {
     int initial_H = get_H_score(a);
     int count = 0;
     for(int i = 0; i < N; i++) {
-        if(a[i] == initial_H-1) count++;
+        if(a[i] == initial_H) {
+            a[i]++;
+            count++;
+        }
     }
-    if(count <= L) cout << initial_H+1; // 최대 점수는 어차피 H+1
+    int second_H = get_H_score(a);
+    if(count <= L) cout << second_H; // 최대 점수는 어차피 H+1
     else cout << initial_H;
     return 0;
 }
